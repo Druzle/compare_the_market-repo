@@ -26,12 +26,13 @@ public class DogInsuranceAccidentOnly {
 	 landing_Page selectPage;
 	 DogPage DogInsurance;
 	 AgrigatedPage Agrigated;
-	 String File_Path="E://eclipse//git_repository//compare_the_market-repo//CompareTheMarketPets//";
+	 //String File_Path="E://eclipse//git_repository//compare_the_market-repo//CompareTheMarketPets//";
 	 String File_Name="AccidentOnly.xlsx";
 	 
 	 @BeforeClass 
 	 public void setup() throws Exception{
-		 ExcelHelper.setExcelFile(File_Path+File_Name,"AgregatedData");
+		 ExcelHelper.setExcelFile(File_Name,"AgregatedData");
+		 //ExcelHelper.setExcelFile(File_Path+File_Name,"AgregatedData");
 	 }
 	 
 	 @BeforeMethod
