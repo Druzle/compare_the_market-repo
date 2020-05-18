@@ -12,6 +12,7 @@ import org.openqa.selenium.By.ByTagName;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -477,10 +478,15 @@ public class DogPage {
 	}
 
 	public void clickButtonNext() {
+		new Actions(driver).moveToElement(buttonNext).perform();
+		//WebDriverWait wait = new WebDriverWait(driver,20);
+		//wait.until(ExpectedConditions.elementToBeClickable(buttonNext));
 		buttonNext.click();
 	}
 
 	public void clickTitleMr() {
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		wait.until(ExpectedConditions.visibilityOf(titleMr));
 		titleMr.click();
 	}
 
@@ -568,22 +574,32 @@ public class DogPage {
 	}
 
 	public void clickContactViaEmail() {
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.visibilityOf(contactViaEmail));
 		contactViaEmail.click();
 	}
 
 	public void clickContactViaPhone() {
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.visibilityOf(contactViaPhone));
 		contactViaPhone.click();
 	}
 
 	public void clickContactViaText() {
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.visibilityOf(contactViaText));
 		contactViaText.click();
 	}
 
 	public void clickContactViaPost() {
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.visibilityOf(contactViaPost));
 		contactViaPost.click();
 	}
 
 	public void clickContactViaNoContact() {
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.visibilityOf(contactViaNoContact));
 		contactViaNoContact.click();
 	}
 
@@ -865,7 +881,7 @@ public class DogPage {
 			e.printStackTrace();
 		}
 		getQuotes.click();
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		WebElement element = wait.until(ExpectedConditions.visibilityOf(waitPageLoad));
 	}
 

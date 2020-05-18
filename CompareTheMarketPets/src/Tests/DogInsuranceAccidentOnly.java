@@ -26,17 +26,19 @@ public class DogInsuranceAccidentOnly {
 	 landing_Page selectPage;
 	 DogPage DogInsurance;
 	 AgrigatedPage Agrigated;
-	 //String File_Path="E://eclipse//git_repository//compare_the_market-repo//CompareTheMarketPets//";
+	 String File_Path="E://eclipse//git_repository//compare_the_market-repo//CompareTheMarketPets//";
 	 String File_Name="AccidentOnly.xlsx";
 	 
-	 @BeforeClass 
+	 @BeforeClass(alwaysRun=true) 
 	 public void setup() throws Exception{
-		 ExcelHelper.setExcelFile(File_Name,"AgregatedData");
-		 //ExcelHelper.setExcelFile(File_Path+File_Name,"AgregatedData");
+		 //ExcelHelper.setExcelFile(File_Name,"AgregatedData");
+		 ExcelHelper.setExcelFile(File_Path+File_Name,"AgregatedData");
+		 
 	 }
 	 
-	 @BeforeMethod
+	 @BeforeMethod(alwaysRun=true)
 	  public void beforeTest() {
+		 
 		 driver = new ChromeDriver();
 		 baseUrl="https://www.comparethemarket.com/";
 		 System.out.println("BeforeTest");
@@ -52,14 +54,14 @@ public class DogInsuranceAccidentOnly {
 
 	  }
 	 
-	 @DataProvider(name="AgregatedData")
+	 @DataProvider(name="AgregateData")
 	 public Object[][] AgregatedData(){
 		 Object[][] testData=ExcelHelper.getTestData("AgregatedDataTest");
 		 System.out.println(testData);
 		return testData;
 	 }
 	 
-	 @Test(testName="AgregatedList",dataProvider="AgregatedData")
+	 @Test(testName="AgregatedList",dataProvider="AgregateData",groups= {"SmokeTest"})
 		public void AgregatedList(String petName, String gender, String petAgeYear, String petAgeMonth, String crossBreed, String dogBreed, String chipped, String howMuchPaid, String nutered, String existingCondition, String policyType, String vetFees, String coverAmount, String calanderDay, String paymentPeriod, String title, String firstName, String lastName, String dobDay, String dobMonth,  String dobYear, String houseNumber, String postCode, String email, String contactBy) {
 
 		  	DogInsurance.clickDog();
@@ -240,7 +242,7 @@ public class DogInsuranceAccidentOnly {
 		return testData;
 	 }
 	 
-	/* @Test(testName="CollectiveErrorValidation_YourPet")
+	@Test(testName="CollectiveErrorValidation_YourPet",groups= {"ErrorValidation"})
 		public void CollectiveErrorValidation_YourPet() {
 		 DogInsurance.clickPetDetailsNext();
 		 
@@ -264,7 +266,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(3), retrieve[2]);
 	 }
 	 
-	 @Test(testName="ErrorValidationDog")
+	 @Test(testName="ErrorValidationDog",groups= {"ErrorValidation"})
 		public void ErrorValidationDog() {
 		 DogInsurance.clickDog();
 		 DogInsurance.clickPetDetailsNext();
@@ -286,7 +288,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(2), retrieve[2]);	  
 	 }
 	 
-	 @Test(testName="ErrorValidationPetsName")
+	 @Test(testName="ErrorValidationPetsName",groups= {"ErrorValidation"})
 		public void ErrorValidationPetsName() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -305,7 +307,7 @@ public class DogInsuranceAccidentOnly {
 		 assertEquals(listRetrieve.get(1), retrieve[2].replace("your pet", "Ben"));   
 	 }
 	 
-	 @Test(testName="ErrorValidationAgeYear")
+	 @Test(testName="ErrorValidationAgeYear",groups= {"ErrorValidation"})
 		public void ErrorValidationAgeYear() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -322,7 +324,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(0), retrieve[2].replace("your pet", "Ben"));	  
 	 }
 	 
-	 @Test(testName="ErrorValidationAgeMonth")
+	 @Test(testName="ErrorValidationAgeMonth",groups= {"ErrorValidation"})
 		public void ErrorValidationAgeMonth() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -339,7 +341,7 @@ public class DogInsuranceAccidentOnly {
 		 assertEquals(listRetrieve.get(0), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="CollectiveValidationMoreAbout")
+	 @Test(testName="CollectiveValidationMoreAbout",groups= {"ErrorValidation"})
 		public void CollectiveValidationMoreAbout() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -382,7 +384,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(6), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationCrossBreed")
+	 @Test(testName="ErrorValidationCrossBreed",groups= {"ErrorValidation"})
 		public void ErrorValidationCrossBreed() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -427,7 +429,7 @@ public class DogInsuranceAccidentOnly {
 			  assertEquals(listRetrieve.get(6), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationDogBreed")
+	 @Test(testName="ErrorValidationDogBreed",groups= {"ErrorValidation"})
 		public void ErrorValidationDogBreed() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -469,7 +471,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(5), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationIsPetChipped")
+	 @Test(testName="ErrorValidationIsPetChipped",groups= {"ErrorValidation"})
 		public void ErrorValidationIsPetChipped() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -507,7 +509,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(4), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationHowMuchPayed")
+	 @Test(testName="ErrorValidationHowMuchPayed",groups= {"ErrorValidation"})
 		public void ErrorValidationHowMuchPayed() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -542,7 +544,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(3), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationDidNotPay")
+	 @Test(testName="ErrorValidationDidNotPay",groups= {"ErrorValidation"})
 		public void ErrorValidationDidNotPay() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -577,7 +579,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(3), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationPetNeutered")
+	 @Test(testName="ErrorValidationPetNeutered",groups= {"ErrorValidation"})
 		public void ErrorValidationPetNeutered() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -609,7 +611,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(2), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationAccidentOnly")
+	 @Test(testName="ErrorValidationAccidentOnly",groups= {"ErrorValidation"})
 		public void ErrorValidationAccidentOnly() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -642,7 +644,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(2), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationAccidentOnly1000Cover")
+	 @Test(testName="ErrorValidationAccidentOnly1000Cover",groups= {"ErrorValidation"})
 		public void ErrorValidationAccidentOnly1000Cover() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -672,7 +674,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(1), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationAccidentOnly2000Cover")
+	 @Test(testName="ErrorValidationAccidentOnly2000Cover",groups= {"ErrorValidation"})
 		public void ErrorValidationAccidentOnly2000Cover() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -702,7 +704,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(1), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationAccidentsAndIllnesses")
+	 @Test(testName="ErrorValidationAccidentsAndIllnesses",groups= {"ErrorValidation"})
 		public void ErrorValidationAccidentsAndIllnesses() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -736,7 +738,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(2), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationAccidentsAndIllnessesUpto12Months")
+	 @Test(testName="ErrorValidationAccidentsAndIllnessesUpto12Months",groups= {"ErrorValidation"})
 		public void ErrorValidationAccidentsAndIllnessesUpto12Months() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -771,7 +773,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(2), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationAccidentsAndIllnessesUptoVetFeeLimit")
+	 @Test(testName="ErrorValidationAccidentsAndIllnessesUptoVetFeeLimit",groups= {"ErrorValidation"})
 		public void ErrorValidationAccidentsAndIllnessesUptoVetFeeLimit() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -806,7 +808,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(2), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationAccidentsAndIllnessesLifetime")
+	 @Test(testName="ErrorValidationAccidentsAndIllnessesLifetime",groups= {"ErrorValidation"})
 		public void ErrorValidationAccidentsAndIllnessesLifetime() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -840,7 +842,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(2), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationCoverStartDate")
+	 @Test(testName="ErrorValidationCoverStartDate",groups= {"ErrorValidation"})
 		public void ErrorValidationCoverStartDate() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -868,7 +870,7 @@ public class DogInsuranceAccidentOnly {
 		  assertEquals(listRetrieve.get(0), retrieve[2].replace("your pet", "Ben"));
 	 }
 	 
-	 @Test(testName="ErrorValidationPaymentMonthly")
+	 @Test(testName="ErrorValidationPaymentMonthly",groups= {"ErrorValidation"})
 		public void ErrorValidationPaymentMonthly() {
 		 DogInsurance.clickDog();
 		 DogInsurance.insertPetName("Ben");
@@ -920,13 +922,13 @@ public class DogInsuranceAccidentOnly {
 		  retrieve=DogInsurance.getErrorDOBYear();
 		  assertEquals(retrieve[0], retrieve[1]);
 		  assertEquals(listRetrieve.get(2), retrieve[2]);
-	 } */
+	 }
 	 
 	 
 	 
-  @AfterMethod
+  @AfterMethod(alwaysRun=true)
   public void afterTest() {
-	  driver.quit();
+	  //driver.quit();
   }
 
 }
