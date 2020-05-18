@@ -479,8 +479,6 @@ public class DogPage {
 
 	public void clickButtonNext() {
 		new Actions(driver).moveToElement(buttonNext).perform();
-		//WebDriverWait wait = new WebDriverWait(driver,20);
-		//wait.until(ExpectedConditions.elementToBeClickable(buttonNext));
 		buttonNext.click();
 	}
 
